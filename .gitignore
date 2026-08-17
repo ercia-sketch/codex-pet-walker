@@ -1,0 +1,24 @@
+# Compiled output
+dist/
+bin/
+obj/
+
+# Codex pet artwork is intentionally not redistributed
+assets/*.png
+assets/*.webp
+!assets/README.md
+
+# Local preview and test output
+artifacts/
+*.tmp
+*.log
+
+# IDE and user-specific files
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Windows metadata
+Thumbs.db
+Desktop.ini
