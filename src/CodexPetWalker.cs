@@ -14,8 +14,8 @@ using Microsoft.Win32;
 
 [assembly: AssemblyTitle("Codex Pet Walker")]
 [assembly: AssemblyProduct("Codex Pet Walker")]
-[assembly: AssemblyVersion("1.5.4.0")]
-[assembly: AssemblyFileVersion("1.5.4.0")]
+[assembly: AssemblyVersion("1.5.5.0")]
+[assembly: AssemblyFileVersion("1.5.5.0")]
 
 namespace CodexPetWalker
 {
@@ -1226,7 +1226,10 @@ namespace CodexPetWalker
             StringBuilder title = new StringBuilder(128);
             NativeMethods.GetClassName(window, className, className.Capacity);
             NativeMethods.GetWindowText(window, title, title.Capacity);
-            if (className.ToString() != "Chrome_WidgetWin_1" || title.ToString() != "Codex") return false;
+            string windowTitle = title.ToString();
+            bool knownTitle = string.Equals(windowTitle, "Codex", StringComparison.Ordinal) ||
+                              string.Equals(windowTitle, "ChatGPT", StringComparison.Ordinal);
+            if (className.ToString() != "Chrome_WidgetWin_1" || !knownTitle) return false;
 
             long style = NativeMethods.GetWindowLongPtr(window, NativeMethods.GwlExStyle).ToInt64();
             long required = NativeMethods.WsExTopmost | NativeMethods.WsExToolWindow | NativeMethods.WsExLayered;

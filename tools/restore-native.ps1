@@ -32,7 +32,7 @@ $restored = $false
     $className = [Text.StringBuilder]::new(128)
     [void] [PetRestoreNative]::GetWindowText($window, $title, $title.Capacity)
     [void] [PetRestoreNative]::GetClassName($window, $className, $className.Capacity)
-    if ($title.ToString() -eq 'Codex' -and $className.ToString() -eq 'Chrome_WidgetWin_1') {
+    if ($title.ToString() -in @('Codex', 'ChatGPT') -and $className.ToString() -eq 'Chrome_WidgetWin_1') {
         [void] [PetRestoreNative]::ShowWindow($window, 8)
         $script:restored = $true
         return $false
